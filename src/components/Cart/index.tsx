@@ -1,6 +1,6 @@
 import {product} from '@Cart/interfaces/responses';
 import React, {useCallback} from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, Text, View, StyleSheet} from 'react-native';
 interface PROPS {
   item: product;
   quantity: number;
@@ -24,13 +24,7 @@ const Cart = ({item, quantity, onPress, index}: PROPS) => {
   return (
     <View>
       {quantity > 0 ? (
-        <View
-          testID={`item${index}`}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+        <View testID={`item${index}`} style={styles.mainView}>
           <Button title={'-'} onPress={removeToCart} testID={`sub${index}`} />
           <Text testID={`quantity${index}`}>({quantity})</Text>
           <Button title={'+'} onPress={addToCart} testID={`add${index}`} />
@@ -46,4 +40,11 @@ const Cart = ({item, quantity, onPress, index}: PROPS) => {
   );
 };
 
+const styles = StyleSheet.create({
+  mainView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 export default Cart;
